@@ -14,14 +14,13 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 # Get the authenticated user's information.
 me = api.me()
 
-
-# Get all the followers
 # Follow all the accounts that follow the bot.
 for follower in tweepy.Cursor(api.followers).items():
 
     # Get the frienship info with the follower.
-    _, follower_friendship = api.show_friendship(target_screen_name=follower.screen_name)
+    _, follower_friendship = api.show_friendship(
+        target_screen_name=follower.screen_name)
 
     # If the authenticated user is not following the user, then they start following it.
     if not follower_friendship.following:
-       follower.follow()
+        follower.follow()
